@@ -1721,9 +1721,9 @@ def extract_curve_u(obj, param, **kwargs):
 
     # Control points
     if (param == 0):
-        curve_ctrlpts = temp_obj.ctrlpts2d[0]    
+        curve_ctrlpts = obj.ctrlpts2d[0]    
     elif (param == 1):
-        curve_ctrlpts = temp_obj.ctrlpts2d[-1]    
+        curve_ctrlpts = obj.ctrlpts2d[-1]    
     else:
         curve_ctrlpts = temp_obj.ctrlpts2d[ks + r - 1]
 
@@ -1739,7 +1739,7 @@ def extract_curve_u(obj, param, **kwargs):
 
 
 @export
-def extract_surface_v(obj, param, **kwargs):
+def extract_curve_v(obj, param, **kwargs):
     """ Extracts the curve at the input parametric coordinate on the v-direction.
 
     Keyword Arguments:
@@ -1775,13 +1775,16 @@ def extract_surface_v(obj, param, **kwargs):
     # Control points
     curve_ctrlpts = []
     idx = 0
+    o = temp_obj
     if (param == 0):
         idx = 0
+        o = obj
     elif (param == 1):
         idx = -1
+        o = obj
     else:
         idx = ks + r - 1
-    for v_row in temp_obj.ctrlpts2d:
+    for v_row in o.ctrlpts2d:
         temp = v_row[idx]
         curve_ctrlpts.append(temp)
 
